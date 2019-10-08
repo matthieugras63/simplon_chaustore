@@ -1,0 +1,25 @@
+TODO
+
+
+- Dump database without insert values
+- Create sessions
+- create new table
+- Sign in form
+- Sign on form
+- Encrypt password
+- Configurate postfix
+- Reinitialisation password form
+
+
+
+IN PROGRESS
+
+- Database scheme
+-
+
+
+
+DONE
+
+- Link github
+- gitignore connection file
