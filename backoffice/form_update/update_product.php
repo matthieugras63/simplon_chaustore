@@ -9,7 +9,6 @@
   <link rel="stylesheet" type="text/css" href="../styles/form.css">
 </head>
 
-
 <body>
   <main>
     <h2>Modifier un produit</h2>
