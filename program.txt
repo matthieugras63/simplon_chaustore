@@ -1,0 +1,7 @@
+Commit - 08/10/2019
+
+Nothing done yesterday / This afternoon : Create new tables and database scheme
+
+Commit - 09/10/2019
+
+Table and database scheme done / This afternoon: Create sign in and sign on forms
