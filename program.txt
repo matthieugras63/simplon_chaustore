@@ -6,3 +6,8 @@ Commit - 09/10/2019
 
 Table and database scheme done / This afternoon: Create sign in and sign on forms
 Created a project, using kanban method in github
+
+commit - 14/10/2019
+
+Finish register forms, and finish postfix config to send a mail after registration
+Create form to reinitialize password
