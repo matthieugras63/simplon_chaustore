@@ -9,5 +9,10 @@ Created a project, using kanban method in github
 
 commit - 14/10/2019
 
-Finish register forms, and finish postfix config to send a mail after registration
+TODO :Finish register forms, and finish postfix config to send a mail after registration
 Create form to reinitialize password
+
+commit - 15/09/2019
+
+Register / connect forms finished. First preview of index layout. Created form to recover pass
+TODO : Configurate postfix / Recover password / improve index layout
