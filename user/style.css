@@ -1,0 +1,35 @@
+body{
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+header{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+header nav{
+  align-self: flex-end;
+  margin-right: 50px;
+}
+
+header h1{
+  align-self: center;
+}
+
+header li{
+  padding: 10px;
+  display: inline-block;
+  list-style: none;
+  border: 1px solid black;
+  background-color: #87E3D3;
+  cursor: pointer;
+}
+
+header li:hover{
+  background-color: #1E51AB;
+}
+
+
