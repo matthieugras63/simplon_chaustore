@@ -14,11 +14,13 @@ main {
   justify-content: space-between;
   align-items: center;
   width: 75vw;
-  height: 85vh;
+  height: 90vh;
   border: 1px solid black;
   border-radius: 30px;
   background-color :#98E8DA;
+  overflow-y: scroll;
 }
+
 
 main>div{
   width: 75%;

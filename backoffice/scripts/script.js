@@ -16,6 +16,19 @@ $(function() {
     })
 });
 
+
+$(function() {
+    $('header ul li').click(function() {
+        var htmlRecovered = $(this).html();
+        if (htmlRecovered === "Accueil") {
+            window.location = "index.php";
+        } else if (htmlRecovered === "Inscription") {
+            window.location = "forms/register.php"
+        } else {
+            window.location = "forms/connect.php"
+        }
+    })
+})
 /* This function recover the html text into the button the user clicked on. According to what's written, it has different actions.  */
 
 
