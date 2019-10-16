@@ -12,7 +12,12 @@ commit - 14/10/2019
 TODO :Finish register forms, and finish postfix config to send a mail after registration
 Create form to reinitialize password
 
-commit - 15/09/2019
+commit - 15/10/2019
 
 Register / connect forms finished. First preview of index layout. Created form to recover pass
 TODO : Configurate postfix / Recover password / improve index layout
+
+commit - 16/10/2019
+
+Tried to configure postfix that worked only for gmail email adress. Figured that IP was blocklisted..
+TODO: Send email when register / Recover password / improve index layout / display products
