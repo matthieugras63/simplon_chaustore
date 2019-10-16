@@ -33,7 +33,7 @@ $(function() {
 
 
 $(function() {
-    $('button').not('#cross').click(function() {
+    $('button').not('#cross').not('#returnConnect').click(function() {
         var htmlRecovered = $(this).html();
         if (htmlRecovered === "Visualiser") {
             $('#container').toggle();
@@ -53,6 +53,11 @@ $(function() {
     })
 })
 
+$(function() {
+    $('#returnConnect').click(function() {
+        window.location = "connect.php";
+    })
+})
 
 /* This function toggle display block/none of the modal container when clicked on the cross */
 
