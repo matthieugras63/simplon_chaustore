@@ -21,3 +21,10 @@ commit - 16/10/2019
 
 Tried to configure postfix that worked only for gmail email adress. Figured that IP was blocklisted..
 TODO: Send email when register / Recover password / improve index layout / display products
+
+commit - 17/10/2019
+
+All forms are now functionnal. User redirected properly depending on its function (admin or customer).
+User can now reinitialize his password if forgotten, by mail. Also, user receive now a mail when registered
+
+TODO: Manage stock / visualize data 
