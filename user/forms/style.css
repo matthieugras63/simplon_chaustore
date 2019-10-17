@@ -17,6 +17,7 @@ body>div{
   padding: 5px;
   border-radius: 20px;
   background-color: #C1D3D0;
+  min-width: 35vw;
 }
 
 
@@ -26,6 +27,7 @@ form {
   align-items: center;
   flex-direction: column;
   margin-bottom: 30px;
+  min-width: 80%;
 }
 
 form p{

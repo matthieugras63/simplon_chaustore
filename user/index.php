@@ -1,3 +1,5 @@
+<?php session_start()  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +13,16 @@
     <nav>
       <ul>
         <li>Accueil</li>
-        <li>Inscription</li>
-        <li>Connexion</li>
+        <?php if (!isset($_SESSION['id'])): ?>
+          <li>Inscription</li>
+          <li>Connexion</li>
+        <?php else : ?>
+          <li>Panier</li>
+          <li>Déconnexion</li>
+        <?php endif ?>
       </ul>
     </nav>
-    <h1>Bienvenue sur la boutique Chaustore</h1>
+    <h1>Bienvenue sur la boutique Chaustore <?php if (isset($_SESSION['id'])) {echo" , ". $_SESSION['firstname'];} ?></h1>
   </header>
 
   <main>

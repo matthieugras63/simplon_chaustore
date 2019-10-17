@@ -1,4 +1,5 @@
 <?php require_once "../../connection.php" ?>
+<?php session_start() ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,8 +23,26 @@ if (!empty($_POST['mail']) && !empty($_POST['password'])){
   $donnees = mysqli_fetch_row($req);
 
 
-  if ($donnees[0] === $email && password_verify($password, $donnees[1])) {
-    $msgSucc .="<br/> Connection réussie";
+  if ($donnees[0] === $email && (password_verify($password, $donnees[1]) || $password == $donnees[1])) {
+    $sessionValues = "SELECT id, firstname, email, function FROM user WHERE email = '$email';";
+    $req2 = mysqli_query($conn,$sessionValues);
+    $donnees = mysqli_fetch_array($req2);
+    $_SESSION['id'] = $donnees[0];
+    $_SESSION['firstname'] = $donnees[1];
+    $_SESSION['email'] = $donnees[2];
+    $_SESSION['function'] = $donnees[3];
+
+    if ($_SESSION['function'] === "customer") {
+      $msgSucc .="<br/> Connection réussie, vous allez être redirigé vers l'accueil";
+      header("Refresh: 3; url=../index.php");
+    } else if ($_SESSION['function'] === "Admin" && $password === "admin"){
+      $msgSucc .="<br/> Première connexion détextée. Veuillez modifier le mot de passe";
+      header("Refresh: 3 ; url=changePass.php");
+    }else{
+      $msgSucc .="<br/> Connection réussie, vous allez être redirigé vers la gestion de boutique";
+      header("Refresh: 3; url=../../backoffice/index.php");
+    }
+
   }else{
     $msgErr .="<br/> Identifiants incorrects";
   }
