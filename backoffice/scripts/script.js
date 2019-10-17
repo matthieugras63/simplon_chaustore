@@ -2,7 +2,7 @@
 the inactive class to his siblings. Moreover, active tab has an opacity of 1 and siblings have an opacity of 0.5 */
 
 $(function() {
-    $('#menu ul li').click(function() {
+    $('#menu ul li').not('#disconnect').click(function() {
         var idRecovered = $(this).attr('id');
         $('#DBAdmin h2').html(idRecovered);
         $(this).css('background-color', '#5976EE').css('opacity', '1').removeClass('inactive');
@@ -18,12 +18,14 @@ $(function() {
 
 
 $(function() {
-    $('header ul li').click(function() {
+    $('header ul li, #menu ul #disconnect').click(function() {
         var htmlRecovered = $(this).html();
         if (htmlRecovered === "Accueil") {
             window.location = "index.php";
         } else if (htmlRecovered === "Inscription") {
             window.location = "forms/register.php"
+        } else if (htmlRecovered === "Déconnexion") {
+            window.location = "../deconnection.php"
         } else {
             window.location = "forms/connect.php"
         }
@@ -47,6 +49,9 @@ $(function() {
         } else if (htmlRecovered === "Supprimer") {
             var textMenu = $('#menu ul li').not('.inactive').attr('class');
             window.location = "form_delete/delete_" + textMenu + ".php";
+        } else if (htmlRecovered === "Modifier mon mot de passe") {
+            var id = $(this).attr('id');
+            window.location = id + ".php";
         } else {
             window.location = "../index.php";
         }
@@ -85,3 +90,4 @@ function changeModal(a) {
     var checkClass = $('#DBAdmin h2').html();
     $('#modal .' + checkClass).siblings('div').toggle();
 }
+

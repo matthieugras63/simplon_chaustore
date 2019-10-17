@@ -6,5 +6,6 @@
     <li id="Pointure" class="size">Pointure</li>
     <li id="Produit" class="product">Produit</li>
     <li id="Stock" class="stock">Stock</li>
+    <li id="disconnect">Déconnexion</li>
   </ul>
 </div>
