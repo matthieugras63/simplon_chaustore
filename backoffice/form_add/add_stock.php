@@ -19,7 +19,7 @@ $msgSucc = $msgErr =  '';
 
 
 /* If the input isn't empty : */
-if (!empty($_POST['stock']) && !empty($_POST['product'])) {
+if (isset($_POST['stock']) && !empty($_POST['product'])) {
   $product =$_POST['product'];
   $size =$_POST['size'];
   $stock = $_POST['stock'];
@@ -51,7 +51,7 @@ if (isset($_POST["submit"])) {
   if (empty($_POST["size"] )) {
     $msgErr .= "<br/> Veuillez saisir une pointure pour le produit";
   }
-  if (empty($_POST["stock"] )) {
+  if (!isset($_POST["stock"] )) {
     $msgErr .= "<br/> Veuillez saisir un nombre de produits disponibles";
   }
 }

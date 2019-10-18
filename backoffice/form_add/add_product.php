@@ -17,7 +17,7 @@
 $msgSucc = $msgErr =  '';
 
 
-/* If input iaren't empty : */
+/* If input aren't empty : */
 if (!empty($_POST['addName']) && !empty($_POST['addPrice']) && !empty($_POST['cat']) && !empty($_POST['brand']) && !empty($_POST['color'])) {
 
   $productName =$_POST['addName'];
@@ -26,9 +26,10 @@ if (!empty($_POST['addName']) && !empty($_POST['addPrice']) && !empty($_POST['ca
   $catName =$_POST['cat'];
   $price =floatval($_POST['addPrice']);
   $gender =$_POST['addGender'];
+  $image = $_FILES['photo']['name'];
 
   /* Here, we check if the product the user want to add isn't already in the database */
-  $checkIfExist = "SELECT name, brand_id, color_id, category_id,price, gender FROM product WHERE name = '$productName' AND brand_id = (SELECT id FROM brand WHERE name = '$brandName') AND color_id = (SELECT id FROM color WHERE name = '$colorName') AND category_id = (SELECT id FROM category WHERE name = '$catName') AND price = '$price' AND gender = '$gender';";
+  $checkIfExist = "SELECT name, brand_id, color_id, category_id, price , image, gender FROM product WHERE name = '$productName' AND brand_id = (SELECT id FROM brand WHERE name = '$brandName') AND color_id = (SELECT id FROM color WHERE name = '$colorName') AND category_id = (SELECT id FROM category WHERE name = '$catName') AND price = '$price' AND gender = '$gender';";
   $req = mysqli_query($conn, $checkIfExist);
   $donnees = mysqli_fetch_row($req);
 
@@ -39,10 +40,33 @@ if (!empty($_POST['addName']) && !empty($_POST['addPrice']) && !empty($_POST['ca
   } else {
 
     /* If not, we insert the value into the database */
-    $add = "INSERT INTO product (name, brand_id, color_id, category_id, price, gender) VALUES ('$productName', (SELECT id FROM brand WHERE name = '$brandName'), (SELECT id FROM color WHERE name = '$colorName'), (SELECT id FROM category WHERE name = '$catName'), $price, '$gender');";
+    $add = "INSERT INTO product (name, brand_id, color_id, category_id, price, gender, image)
+    VALUES
+    ('$productName',
+    (SELECT id FROM brand WHERE name = '$brandName'),
+    (SELECT id FROM color WHERE name = '$colorName'),
+    (SELECT id FROM category WHERE name = '$catName'),
+    $price,
+    '$gender',
+    '$image');";
     $req = mysqli_query($conn, $add);
     $msgSucc .="<br/> Entrée ajoutée avec succès ( " . $_POST['addName'].", ". $_POST['cat']." ". $_POST['color']. " pour ". $_POST['addGender']. " de la marque ". $_POST['brand']. " au prix de ". $_POST['addPrice']. "€ )" ;
   }
+}
+
+if(isset($_FILES['photo']) && !empty($_FILES['photo'])){
+  $dossier = 'images/';
+  $fichier = basename($_FILES['photo']['name']);
+  if (move_uploaded_file($_FILES['photo']['tmp_name'], $dossier . $fichier)) {
+    $msgSucc .= "<br/>Upload effectué avec succès !";
+  }else{
+    $msgErr .= "Aucune image uploadée !";
+  }
+  $extensions = array('.png', '.gif', '.jpg', '.jpeg');
+  $extension = strrchr($_FILES['photo']['name'], '.');
+  if(!in_array($extension, $extensions)){
+   $msgErr .= 'Vous devez uploader un fichier de type png, gif, jpg, jpeg, txt ou doc...';
+ }
 }
 
 /* Here, we will check if the input is empty when the user click on submit. If yes, error message appear according to the empty input/select */
@@ -76,7 +100,7 @@ if (isset($_POST["submit"])) {
       <span class="msgPostSubmit"><?php echo "<font color='red'>$msgErr</font>" ;?></span>
       <span class="msgPostSubmit"><?php echo "<font color='green'>$msgSucc</font>";?></span>
 
-      <form method="POST" action="add_product.php">
+      <form method="POST" action="add_product.php" enctype="multipart/form-data">
         <p>
           <label for="addName">Nom du produit : </label>
           <input type="text" name="addName" id="addName" autocomplete="off">
@@ -159,6 +183,11 @@ if (isset($_POST["submit"])) {
           <input type="radio" id="addGender" name="addGender" value="M">
         </p>
 
+        <p>
+          <label for="photo">Ajouter une photo</label>
+          <input type="file" name="photo">
+          <input type="hidden" name="MAX_FILE_SIZE" value="100000">
+        </p>
 
         <input type="submit" name="submit" id="submit_button">
       </form>

@@ -4,7 +4,7 @@
     <thead>
       <tr>
         <?php
-        $nomCol ="SELECT product.id AS article, product.name AS produit, category.name AS catégorie, brand.name AS marque, color.name AS couleur, price AS prix, gender AS sexe FROM product INNER JOIN category ON product.category_id = category.id INNER JOIN brand ON product.brand_id = brand.id INNER JOIN color ON product.color_id = color.id ORDER BY product.name ASC;";
+        $nomCol ="SELECT product.id AS article, product.name AS produit, category.name AS catégorie, brand.name AS marque, color.name AS couleur, price AS prix, image AS image, gender AS sexe FROM product INNER JOIN category ON product.category_id = category.id INNER JOIN brand ON product.brand_id = brand.id INNER JOIN color ON product.color_id = color.id ORDER BY product.name ASC;";
         $req = mysqli_query($conn, $nomCol);
         while ($result = mysqli_fetch_field($req)){
           ?>
@@ -17,16 +17,16 @@
     <tbody>
 
       <?php
-      $preview = "SELECT product.id AS article, product.name AS produit, category.name AS catégorie, brand.name AS marque, color.name AS couleur, price AS prix, gender AS sexe FROM product INNER JOIN category ON product.category_id = category.id INNER JOIN brand ON product.brand_id = brand.id INNER JOIN color ON product.color_id = color.id ORDER BY product.name ASC;";
+      $preview = "SELECT product.id AS article, product.name AS produit, category.name AS catégorie, brand.name AS marque, color.name AS couleur, price AS prix,image AS image, gender AS sexe FROM product INNER JOIN category ON product.category_id = category.id INNER JOIN brand ON product.brand_id = brand.id INNER JOIN color ON product.color_id = color.id ORDER BY product.name ASC;";
 
       $req = mysqli_query($conn, $preview);
       while($result = mysqli_fetch_row($req)){
-        for ($i=0; $i < count($result) ; $i+=7) {
+        for ($i=0; $i < count($result) ; $i+=8) {
          ?>
 
          <tr>
 
-          <?php for ($j=0; $j < 7 ; $j++) { ?>
+          <?php for ($j=0; $j < 8 ; $j++) { ?>
            <td><?php echo($result[$i+$j]); ?></td>
          <?php } ?>
 
