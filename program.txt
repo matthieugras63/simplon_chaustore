@@ -28,3 +28,11 @@ All forms are now functionnal. User redirected properly depending on its functio
 User can now reinitialize his password if forgotten, by mail. Also, user receive now a mail when registered
 
 TODO: Manage stock / visualize data 
+
+
+commit -18/10/2019
+
+All products are now displayed as long as they have a stock, even if 0.
+Admin can upload images and update existing products to add one
+
+TODO: commentaries 
